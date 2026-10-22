@@ -1,0 +1,6 @@
+== Proveedor actual (ya compatible) ==
+   Colaborador: C-100 | Fecha: 2026-09-24 | Ingreso: 08:00 | Salida: 17:00
+== Nuevo fabricante (mediante Adapter) ==
+   Colaborador: C-100 | Fecha: 2026-09-24 | Ingreso: 07:55 | Salida: 17:10
+   Colaborador: C-200 | Fecha: 2026-09-24 | Ingreso: 09:05 | Salida: --
+   Colaborador: C-300 | Fecha: 2026-09-24 | Ingreso: -- | Salida: --

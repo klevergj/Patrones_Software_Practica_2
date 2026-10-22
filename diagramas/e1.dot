@@ -1,0 +1,14 @@
+digraph G {
+  graph [rankdir=TB, nodesep=0.35, ranksep=0.6, bgcolor=white, pad=0.3, splines=true];
+  node [shape=plaintext, fontname="Helvetica", fontsize=11];
+  edge [fontname="Helvetica", fontsize=10, color="#333333"];
+  Cliente [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#F5F5F5"><tr><td><b>Cliente (Main)</b></td></tr><hr/><tr><td align="left" balign="left"> </td></tr><hr/><tr><td align="left" balign="left">+ imprimir(e: ElementoPresupuesto)</td></tr></table>>];
+  Component [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#DAE8FC"><tr><td>«abstract»<br/><b><i>ElementoPresupuesto</i></b></td></tr><hr/><tr><td align="left" balign="left">- codigo: String<br/>- descripcion: String</td></tr><hr/><tr><td align="left" balign="left">+ getCodigo(): String<br/>+ getDescripcion(): String<br/>+ calcularValorTotal(): BigDecimal<br/>+ mostrarEstructura(nivel: int)</td></tr></table>>];
+  Hoja [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#E1D5E7"><tr><td><b>PartidaPresupuestaria</b></td></tr><hr/><tr><td align="left" balign="left">- valorAsignado: BigDecimal</td></tr><hr/><tr><td align="left" balign="left">+ calcularValorTotal(): BigDecimal<br/>+ mostrarEstructura(nivel: int)</td></tr></table>>];
+  Composite [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#FFE6CC"><tr><td><b>GrupoPresupuestario</b></td></tr><hr/><tr><td align="left" balign="left">- hijos: List&lt;ElementoPresupuesto&gt;</td></tr><hr/><tr><td align="left" balign="left">+ agregar(e: ElementoPresupuesto)<br/>+ eliminar(e: ElementoPresupuesto)<br/>+ getHijos(): List&lt;ElementoPresupuesto&gt;<br/>+ calcularValorTotal(): BigDecimal<br/>+ mostrarEstructura(nivel: int)</td></tr></table>>];
+  {rank=same; Cliente; Component}
+  Cliente -> Component [arrowhead=vee, headlabel="1", taillabel="*", labeldistance=2.5];
+  Component -> Hoja [dir=back, arrowtail=empty, arrowsize=1.2];
+  Component -> Composite [dir=back, arrowtail=empty, arrowsize=1.2];
+  Composite -> Component [dir=both, arrowtail=diamond, arrowhead=vee, headlabel="0..*", constraint=false, labeldistance=2.5];
+}

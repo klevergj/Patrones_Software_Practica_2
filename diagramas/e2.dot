@@ -1,0 +1,19 @@
+digraph G {
+  graph [rankdir=TB, nodesep=0.35, ranksep=0.6, bgcolor=white, pad=0.3, splines=true];
+  node [shape=plaintext, fontname="Helvetica", fontsize=11];
+  edge [fontname="Helvetica", fontsize=10, color="#333333"];
+  Cliente [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#F5F5F5"><tr><td><b>SistemaAsistencia (Cliente)</b></td></tr><hr/><tr><td align="left" balign="left">- proveedor: ProveedorAsistencia</td></tr><hr/><tr><td align="left" balign="left">+ consultar(idColaborador: String,<br/>      fecha: LocalDate)</td></tr></table>>];
+  Target [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#DAE8FC"><tr><td>«interface»<br/><b>ProveedorAsistencia (Target)</b></td></tr><hr/><tr><td align="left" balign="left"> </td></tr><hr/><tr><td align="left" balign="left">+ obtenerAsistencia(idColaborador: String,<br/>      fecha: LocalDate): RegistroAsistencia</td></tr></table>>];
+  Reg [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#F5F5F5"><tr><td>«record»<br/><b>RegistroAsistencia</b></td></tr><hr/><tr><td align="left" balign="left">idColaborador: String<br/>fecha: LocalDate<br/>horaIngreso: LocalTime<br/>horaSalida: LocalTime</td></tr><hr/><tr><td align="left" balign="left"> </td></tr></table>>];
+  Actual [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#E1D5E7"><tr><td><b>BiometricoProveedorActual</b></td></tr><hr/><tr><td align="left" balign="left"> </td></tr><hr/><tr><td align="left" balign="left">+ obtenerAsistencia(idColaborador: String,<br/>      fecha: LocalDate): RegistroAsistencia</td></tr></table>>];
+  Adapter [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#FFE6CC"><tr><td><b>BiometricoFabricanteAdapter (Adapter)</b></td></tr><hr/><tr><td align="left" balign="left">- biblioteca: BibliotecaBiometricoXZ<br/>- zona: ZoneId</td></tr><hr/><tr><td align="left" balign="left">+ obtenerAsistencia(idColaborador: String,<br/>      fecha: LocalDate): RegistroAsistencia</td></tr></table>>];
+  Adaptee [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#E1D5E7"><tr><td><b>BibliotecaBiometricoXZ (Adaptee)</b></td></tr><hr/><tr><td align="left" balign="left">- almacen: List&lt;MarcacionFabricante&gt;</td></tr><hr/><tr><td align="left" balign="left">+ recuperarMarcaciones(codigoEmpleado: String,<br/>      desdeMillis: long, hastaMillis: long):<br/>      List&lt;MarcacionFabricante&gt;</td></tr></table>>];
+  Marc [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="5" bgcolor="#E1D5E7"><tr><td><b>MarcacionFabricante</b></td></tr><hr/><tr><td align="left" balign="left">- codigoEmpleado: String<br/>- instanteEpochMillis: long<br/>- evento: int</td></tr><hr/><tr><td align="left" balign="left">+ getCodigoEmpleado(): String<br/>+ getInstanteEpochMillis(): long<br/>+ getEvento(): int</td></tr></table>>];
+  {rank=same; Cliente; Target; Reg}
+  Cliente -> Target [arrowhead=vee, headlabel="1", taillabel="*", labeldistance=2.5];
+  Target -> Reg [style=dashed, arrowhead=vee, label="devuelve"];
+  Target -> Actual [dir=back, arrowtail=empty, style=dashed, arrowsize=1.2];
+  Target -> Adapter [dir=back, arrowtail=empty, style=dashed, arrowsize=1.2];
+  Adapter -> Adaptee [arrowhead=vee, headlabel="1", taillabel="*", labeldistance=2.5];
+  Adaptee -> Marc [arrowhead=vee, headlabel="0..*", labeldistance=2.5];
+}

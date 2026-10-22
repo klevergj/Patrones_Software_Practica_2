@@ -1,0 +1,17 @@
+=== Estructura del presupuesto ===
++ [PRES-2026] Presupuesto Institucional 2026  (total: $61,000.50)
+    + [TI] Tecnologías de la Información  (total: $61,000.50)
+        - [TI-01] Licenciamiento de software: $12,000.00
+        + [TI-02] Infraestructura  (total: $44,700.50)
+            - [TI-02-01] Servidores: $30,000.00
+            - [TI-02-02] Almacenamiento: $8,500.50
+            - [TI-02-03] Comunicaciones: $6,200.00
+        - [TI-03] Servicios de soporte: $4,300.00
+
+=== Consultas uniformes ===
+TI-01 - Licenciamiento de software -> $12,000.00
+TI-02 - Infraestructura -> $44,700.50
+PRES-2026 - Presupuesto Institucional 2026 -> $61,000.50
+
+=== Tras agregar un nuevo grupo ===
+PRES-2026 - Presupuesto Institucional 2026 -> $70,000.50
